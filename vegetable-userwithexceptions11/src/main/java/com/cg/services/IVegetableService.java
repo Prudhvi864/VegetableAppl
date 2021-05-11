@@ -3,10 +3,12 @@ package com.cg.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.cg.exceptions.DuplecateVegetableException;
+import com.cg.exceptions.VegetableNotFoundException;
 import com.cg.model.VegetableDTO;
 
 public interface IVegetableService {
-	public VegetableDTO addVegetable(VegetableDTO veg);
+	public VegetableDTO addVegetable(VegetableDTO veg) throws DuplecateVegetableException,VegetableNotFoundException;
 
 	public VegetableDTO updateVegetable(VegetableDTO veg);
 
@@ -22,6 +24,6 @@ public interface IVegetableService {
 
 	public List<VegetableDTO> findByCategory(String category);
 
-	public Optional<VegetableDTO> findByVegId(Integer vegId);
+	public Optional<VegetableDTO> findByVegId(Integer vegId) throws VegetableNotFoundException;
 
 }
