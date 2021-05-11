@@ -3,9 +3,13 @@ package com.cg.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.exceptions.DuplecateVegetableException;
+import com.cg.exceptions.VegetableNotFoundException;
 import com.cg.model.VegetableDTO;
 import com.cg.repository.VegetableJPARepository;
 
@@ -43,8 +47,7 @@ public class IVegetableServiceImp implements IVegetableService {
 	}
 
 	@Override // adding Vegetable details.
-	public VegetableDTO addVegetable(VegetableDTO dto) {
-
+	public VegetableDTO addVegetable(VegetableDTO dto){
 		// TODO Auto-generated method stub
 		return VegetableRepo.save(dto);
 	}
@@ -73,6 +76,30 @@ public class IVegetableServiceImp implements IVegetableService {
 	public Optional<VegetableDTO> findByVegId(Integer vegId) {
 		// TODO Auto-generated method stub
 		return VegetableRepo.findById(vegId);
+	}
+	@Override
+	public VegetableDTO createVegetable(VegetableDTO veg)
+			throws DuplecateVegetableException, VegetableNotFoundException {
+		System.out.println("VegetableId:"+veg.getVegId());
+		Optional<VegetableDTO> result= VegetableRepo.findById(veg.getVegId());
+		if(result!=null) {
+			System.out.println("Duplicate id");
+			if(result.get().getVegId()==veg.getVegId()) 
+			throw new DuplecateVegetableException("Vegetable with "+veg.getVegId()+" already Exist");	
+		}
+		if(veg.getVegId()<=0)
+			throw new VegetableNotFoundException("Vegetable Not Found");
+		// TODO Auto-generated method stub
+		return VegetableRepo.save(veg);
+	}
+
+	@Override
+	public Optional<VegetableDTO> readVegId(Integer vegId) throws VegetableNotFoundException {
+		Optional<VegetableDTO> result = VegetableRepo.findById(vegId);
+		if(result == null) {
+			throw new VegetableNotFoundException("Vegetable not found");
+			}
+		return result;		// TODO Auto-generated method stub
 	}
 
 }

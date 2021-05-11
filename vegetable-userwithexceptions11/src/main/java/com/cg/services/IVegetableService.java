@@ -8,7 +8,7 @@ import com.cg.exceptions.VegetableNotFoundException;
 import com.cg.model.VegetableDTO;
 
 public interface IVegetableService {
-	public VegetableDTO addVegetable(VegetableDTO veg) throws DuplecateVegetableException,VegetableNotFoundException;
+	public VegetableDTO addVegetable(VegetableDTO veg);
 
 	public VegetableDTO updateVegetable(VegetableDTO veg);
 
@@ -24,6 +24,9 @@ public interface IVegetableService {
 
 	public List<VegetableDTO> findByCategory(String category);
 
-	public Optional<VegetableDTO> findByVegId(Integer vegId) throws VegetableNotFoundException;
+	public Optional<VegetableDTO> findByVegId(Integer vegId);
+	
+	public VegetableDTO createVegetable(VegetableDTO veg) throws DuplecateVegetableException,VegetableNotFoundException;
+	public Optional<VegetableDTO> readVegId(Integer vegId) throws VegetableNotFoundException;
 
 }
