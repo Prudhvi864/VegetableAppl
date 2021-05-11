@@ -14,28 +14,28 @@ public class IVegetableServiceImp implements IVegetableService {
 	@Autowired
 	public VegetableJPARepository VegetableRepo;
 
-	@Override
+	@Override  		//get Vegetable details by vegetable name.
 	public List<VegetableDTO> viewVegetableByName(String name) {
 		List<VegetableDTO> viewVegetableByName = VegetableRepo.viewVegetableByName(name);
 		// TODO Auto-generated method stub
 		return viewVegetableByName;
 	}
 
-	@Override
+	@Override		//get Vegetable list details by category.
 	public List<VegetableDTO> viewVegetableList(String category) {
 		List<VegetableDTO> viewVegetableList = VegetableRepo.viewVegetableList(category);
 		// TODO Auto-generated method stub
 		return viewVegetableList;
 	}
 
-	@Override
+	@Override		//get all the vegetables.
 	public List<VegetableDTO> viewAllVegetables() {
 		List<VegetableDTO> viewAllVegetables = VegetableRepo.findAll();
 		// TODO Auto-generated method stub
 		return viewAllVegetables;
 	}
 
-	@Override
+	@Override		//get Vegetable details.
 	public VegetableDTO viewVegetable(Integer vegId) {
 		Optional<VegetableDTO> viewVegetable = VegetableRepo.findById(vegId);
 		// TODO Auto-generated method stub
@@ -43,44 +43,37 @@ public class IVegetableServiceImp implements IVegetableService {
 	}
 
 	
-	@Override
+	@Override		//adding Vegetable details.
 	public VegetableDTO addVegetable(VegetableDTO dto) {
 
 		// TODO Auto-generated method stub
 		return VegetableRepo.save(dto);
 	}
 
-	@Override
+	@Override		//update Vegetable details.
 	public VegetableDTO updateVegetable(VegetableDTO dto) {
 		// TODO Auto-generated method stub
 		return VegetableRepo.save(dto);
 	}
 
-	@Override
+	@Override		//delete Vegetable details.
 	public List<VegetableDTO> removeVegetable(Integer vegId) {
 		// TODO Auto-generated method stub
 		 VegetableRepo.deleteById(vegId); 
 		  return VegetableRepo.findAll();
 	}
 
-	@Override
+	@Override  		//get Vegetable  details by category.
 	public List<VegetableDTO> findByCategory(String category) {
 		// TODO Auto-generated method stub
 		
 		return (List<VegetableDTO>) VegetableRepo.findByCategory(category);
 	}
 
-	@Override
+	@Override						//get Vegetable  details by vegetableId.
 	public Optional<VegetableDTO> findByVegId(Integer vegId) {
 		// TODO Auto-generated method stub
 		return VegetableRepo.findById(vegId);
 	}
-
-	/*@Override
-	public VegetableDTO removeVegetable(VegetableDTO veg) {
-		VegetableDTO removeVegetable = VegetableRepo.removeVegetable(veg.getVegId());
-		// TODO Auto-generated method stub
-		return removeVegetable;
-	}*/
 
 }

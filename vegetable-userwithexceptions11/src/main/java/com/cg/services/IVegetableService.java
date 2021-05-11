@@ -13,7 +13,6 @@ public interface IVegetableService {
 	public List<VegetableDTO> viewVegetableList(String category);
 	public List<VegetableDTO> viewVegetableByName(String name);
 	public List<VegetableDTO> removeVegetable(Integer vegId);
-	//public VegetableDTO removeVegetable(VegetableDTO veg);
 	public List<VegetableDTO> findByCategory(String category);
 	public  Optional<VegetableDTO> findByVegId( Integer vegId);
 	

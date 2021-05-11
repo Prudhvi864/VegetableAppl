@@ -3,15 +3,16 @@ package com.cg.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name="Vegetable_dto")
+@Table(name="Vegetable_dto")  //Mapping with sql table.
 public class VegetableDTO {
 	@Id
-	//@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO) //vegetableId auto generation.
 	@Column(name=" VEG_ID")
 	private int vegId;
 	@Column(name="name")
@@ -32,7 +33,7 @@ public class VegetableDTO {
 		super();
 		this.vegId = vegId;
 		this.name = name;
-		this.type = type;
+		this.type = type;                     //constructor
 		this.category = category;
 		this.price = price;
 		this.quantity = quantity;
@@ -47,7 +48,7 @@ public class VegetableDTO {
 		return name;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.name = name;                           //getters & setters for VegetableDTO. 
 	}
 	public String getType() {
 		return type;
@@ -73,10 +74,10 @@ public class VegetableDTO {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	/*@Override
+	@Override
 	public String toString() {
 		return "Vegetable [vegId=" + vegId + ", name=" + name + ", type=" + type + ", category=" + category + ", price="
 				+ price + ", quantity=" + quantity + "]";
-	}*/
+	}
 	
 }
