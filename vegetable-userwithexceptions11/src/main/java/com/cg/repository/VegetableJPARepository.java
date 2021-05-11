@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.cg.model.VegetableDTO;
+
 /*
  * @Repository annotation is used to indicate that the class provides the mechanism 
  * for storage, retrieval, search, update and delete operation on objects.
@@ -21,8 +22,10 @@ import com.cg.model.VegetableDTO;
 public interface VegetableJPARepository extends JpaRepository<VegetableDTO, Integer> {
 	@Query("SELECT veg FROM VegetableDTO veg where veg.category=:cat")
 	public List<VegetableDTO> viewVegetableList(@Param("cat") String category);
+
 	@Query("SELECT veg FROM VegetableDTO veg where veg.name=:pnm")
 	public List<VegetableDTO> viewVegetableByName(@Param("pnm") String name);
+
 	@Query("SELECT veg FROM VegetableDTO veg where veg.category=:cat")
 	public List<VegetableDTO> findByCategory(@Param("cat") String category);
 }
