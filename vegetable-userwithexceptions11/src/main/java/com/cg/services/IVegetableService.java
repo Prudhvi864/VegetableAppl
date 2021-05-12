@@ -3,7 +3,7 @@ package com.cg.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.cg.exceptions.DuplecateVegetableException;
+import com.cg.exceptions.DuplicateVegetableException;
 import com.cg.exceptions.VegetableNotFoundException;
 import com.cg.model.VegetableDTO;
 
@@ -26,7 +26,7 @@ public interface IVegetableService {
 
 	public Optional<VegetableDTO> findByVegId(Integer vegId);
 	
-	public VegetableDTO createVegetable(VegetableDTO veg) throws DuplecateVegetableException,VegetableNotFoundException;
-	public Optional<VegetableDTO> readVegId(Integer vegId) throws VegetableNotFoundException;
+	public VegetableDTO createVegetable(VegetableDTO veg) throws DuplicateVegetableException,VegetableNotFoundException;
+	public Optional<VegetableDTO> readVegId(int vegId) throws VegetableNotFoundException;
 
 }

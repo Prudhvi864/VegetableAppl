@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.exceptions.DuplecateVegetableException;
+import com.cg.exceptions.DuplicateVegetableException;
 import com.cg.exceptions.VegetableNotFoundException;
 import com.cg.model.VegetableDTO;
 import com.cg.services.IVegetableService;
@@ -92,7 +92,7 @@ public class VegetableController {
 	public ResponseEntity<VegetableDTO> addVegetable(@RequestBody VegetableDTO vegetableDTO) {
 		Optional<VegetableDTO> vegetable = vegetableservice.findByVegId(vegetableDTO.getVegId());
 		if (vegetable.isPresent()) {
-			throw new DuplecateVegetableException("Duplicate Vegetable Id Found, Already Exists");
+			throw new DuplicateVegetableException("Duplicate Vegetable Id Found, Already Exists");
 		}
 		VegetableDTO addingVegetableToList = vegetableservice.addVegetable(vegetableDTO);
 

@@ -28,4 +28,5 @@ public interface VegetableJPARepository extends JpaRepository<VegetableDTO, Inte
 
 	@Query("SELECT veg FROM VegetableDTO veg where veg.category=:cat")
 	public List<VegetableDTO> findByCategory(@Param("cat") String category);
+	
 }

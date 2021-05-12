@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.exceptions.DuplecateVegetableException;
+import com.cg.exceptions.DuplicateVegetableException;
 import com.cg.exceptions.VegetableNotFoundException;
 import com.cg.model.VegetableDTO;
 import com.cg.repository.VegetableJPARepository;
@@ -79,13 +79,13 @@ public class IVegetableServiceImp implements IVegetableService {
 	}
 	@Override
 	public VegetableDTO createVegetable(VegetableDTO veg)
-			throws DuplecateVegetableException, VegetableNotFoundException {
+			throws DuplicateVegetableException, VegetableNotFoundException {
 		System.out.println("VegetableId:"+veg.getVegId());
 		Optional<VegetableDTO> result= VegetableRepo.findById(veg.getVegId());
 		if(result!=null) {
 			System.out.println("Duplicate id");
 			if(result.get().getVegId()==veg.getVegId()) 
-			throw new DuplecateVegetableException("Vegetable with "+veg.getVegId()+" already Exist");	
+			throw new DuplicateVegetableException("Vegetable with "+veg.getVegId()+" already Exist");	
 		}
 		if(veg.getVegId()<=0)
 			throw new VegetableNotFoundException("Vegetable Not Found");
@@ -94,9 +94,9 @@ public class IVegetableServiceImp implements IVegetableService {
 	}
 
 	@Override
-	public Optional<VegetableDTO> readVegId(Integer vegId) throws VegetableNotFoundException {
+	public Optional<VegetableDTO> readVegId(int vegId) throws VegetableNotFoundException {
 		Optional<VegetableDTO> result = VegetableRepo.findById(vegId);
-		if(result == null) {
+		if(result.isEmpty()) {
 			throw new VegetableNotFoundException("Vegetable not found");
 			}
 		return result;		// TODO Auto-generated method stub
