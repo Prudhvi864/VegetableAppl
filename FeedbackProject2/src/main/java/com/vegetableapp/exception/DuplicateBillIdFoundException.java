@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class DuplicateBillIdFoundException extends RuntimeException {
 	public DuplicateBillIdFoundException () {
-		super();
+		super();                           //Empty constructor
 	}
 
 	public DuplicateBillIdFoundException (String message) {
-		super(message);
+		super(message);                    //Message generates here
 	}
 
 

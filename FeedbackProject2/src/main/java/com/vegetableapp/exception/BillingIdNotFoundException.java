@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class BillingIdNotFoundException extends RuntimeException {
 	public BillingIdNotFoundException() {
-		super();
+		super();                        //Empty constructor
 	}
 
 	public BillingIdNotFoundException(String message) {
-		super(message);
+		super(message);                 //Message generates here
 	}
 
 

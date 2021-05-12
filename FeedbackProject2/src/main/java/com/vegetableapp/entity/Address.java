@@ -5,10 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "address_details8")
+@Entity                              //It specifies that the class is an entity and is mapped to a database table.
+@Table(name = "address_details8")    //Mapping with Address Table in SQL
 public class Address {
-	@Id
+	@Id                              //primary key of current entity
 	@Column(name = "address_id")
 	private int addressId;
 	@Column(name = "flat_no")
@@ -34,7 +34,7 @@ public class Address {
 		this.addressId = addressId;
 		this.flatNo = flatNo;
 		this.buildingName = buildingName;
-		this.area = area;
+		this.area = area;                          //Constructor
 		this.city = city;
 		this.state = state;
 		this.pincode = pincode;
@@ -61,7 +61,7 @@ public class Address {
 	}
 
 	public void setBuildingName(String buildingName) {
-		this.buildingName = buildingName;
+		this.buildingName = buildingName;                    //Getters and Setters
 	}
 
 	public String getArea() {
@@ -96,7 +96,7 @@ public class Address {
 		this.pincode = pincode;
 	}
 
-	@Override
+	@Override                                          //Generating Values
 	public String toString() {
 		return "Address [addressId=" + addressId + ", flatNo=" + flatNo + ", buildingName=" + buildingName + ", area="
 				+ area + ", city=" + city + ", state=" + state + ", pincode=" + pincode + "]";

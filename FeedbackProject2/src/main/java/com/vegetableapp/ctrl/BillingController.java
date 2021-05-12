@@ -17,14 +17,17 @@ import com.vegetableapp.entity.Billing;
 import com.vegetableapp.exception.BillingIdNotFoundException;
 import com.vegetableapp.exception.DuplicateBillIdFoundException;
 import com.vegetableapp.service.BillingService;
+/*
+ * Web Controller deals with HTTP requests and HTTP responses.
+ * */
 
 @RestController
-@RequestMapping("/api/bill")
+@RequestMapping("/api/bill")                      // Mapping Path for Billing Controller
 public class BillingController {
 	@Autowired
-	private BillingService service;
+	private BillingService service;               // Importing BillingService and implementation
 
-	@PostMapping("/addbill")
+	@PostMapping("/addbill")                      // Adding Bill in postman using POST
 	public ResponseEntity<Billing> addBill(@RequestBody Billing bill) {
 		Optional<Billing> addobj1 = service.getBillingById(bill.getBillingId());
 		if (addobj1.isPresent()) {
@@ -34,7 +37,7 @@ public class BillingController {
 		}
 		return new ResponseEntity<Billing>(bill, HttpStatus.OK);
 	}
-	@PutMapping("/updatebill")
+	@PutMapping("/updatebill")                     // Using PUT Mapping Updating Bill  from Billing id
 	public ResponseEntity<Billing> updateBill(@RequestBody Billing bill) {
 		Optional<Billing> upobj1 = service.getBillingById(bill.getBillingId());
 		Billing upobj2 = service.updateBill(bill);
@@ -44,7 +47,7 @@ public class BillingController {
 		return new ResponseEntity<Billing>(upobj2, HttpStatus.OK);
 	}
 
-	@GetMapping("/viewbill/{billingId}")
+	@GetMapping("/viewbill/{billingId}")           // Using GET Mapping fetching results  from Billing id
 	public ResponseEntity<Billing> viewBill(@PathVariable("billingId") Integer billingId) {
 		Optional<Billing> vbill = service.getBillingById(billingId);
 		if (!vbill.isPresent()) {

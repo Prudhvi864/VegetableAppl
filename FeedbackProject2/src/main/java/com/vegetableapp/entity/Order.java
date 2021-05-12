@@ -14,11 +14,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Table(name = "order_details8")
+@Entity                               //It specifies that the class is an entity and is mapped to a database table.
+@Table(name = "order_details8")       //Mapping with Order Table in SQL
 
 public class Order {
-	@Id
+	@Id                               //primary key of current entity
 	@Column(name = "order_no")
 	private int orderNo;
 	@Column(name = "customer_id")
@@ -45,7 +45,7 @@ public class Order {
 		super();
 		this.orderNo = orderNo;
 		this.customerId = customerId;
-		this.totalAmount = totalAmount;
+		this.totalAmount = totalAmount;                      //Constructor
 		this.Date = orderDate;
 		this.status = status;
 	}
@@ -69,7 +69,7 @@ public class Order {
 	public double getTotalAmount() {
 		return totalAmount;
 	}
-
+																//Getters and Setters
 	public void setTotalAmount(double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
@@ -90,7 +90,7 @@ public class Order {
 		this.status = status;
 	}
 
-	@Override
+	@Override                                                    //Generating Values
 	public String toString() {
 		return "Order [orderNo=" + orderNo + ", customerId=" + customerId + ", totalAmount=" + totalAmount + ", orderDate="
 				+ Date + ", status=" + status + "]";

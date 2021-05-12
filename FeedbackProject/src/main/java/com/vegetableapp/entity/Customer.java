@@ -9,10 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 
-@Entity
-@Table(name="customer_details11")
+@Entity                                     //It specifies that the class is an entity and is mapped to a database table.
+@Table(name="customer_details11")           //Mapping with Customer Table in SQL
 public class Customer {
-	@Id
+	@Id                                     //primary key of current entity
     @Column(name="customer_id")
 	private int customerId;
 	@Column(name = "customer_name")
@@ -39,7 +39,7 @@ public class Customer {
 		super();
 		this.customerId = customerId;
 		this.name = name;
-		this.mobileNumber = mobileNumber;
+		this.mobileNumber = mobileNumber;          //Constructor
 		this.addressId = addressId;
 		this.userId = userId;
 		this.password = password;
@@ -66,7 +66,7 @@ public class Customer {
 	}
 
 	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
+		this.mobileNumber = mobileNumber;                           //Getters and Setters
 	}
 	
 	public int getAddressId() {
@@ -92,8 +92,10 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	  //Generating Values 
 
-	@Override
+	@Override                                        
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", name=" + name + ", mobileNumber=" + mobileNumber + ", address="
 				+ addressId + ", User Id=" + userId + ", password=" + password + "]";

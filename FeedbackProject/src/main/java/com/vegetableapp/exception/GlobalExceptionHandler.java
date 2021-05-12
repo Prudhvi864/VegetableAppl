@@ -26,15 +26,13 @@ public class GlobalExceptionHandler {
 				request.getDescription(false));
 		return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
 	}
-
-	/*
-	 * @ExceptionHandler(Exception.class)
-	 * 
-	 * @ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR) public
-	 * ResponseEntity<Object>globalExceptionHandler(Exception ex, WebRequest
-	 * request) { ExceptionDetails exceptionDetails = new ExceptionDetails(new
-	 * Date(0), ex.getMessage(), request.getDescription(false)); return new
-	 * ResponseEntity<>(exceptionDetails, HttpStatus.INTERNAL_SERVER_ERROR); }
-	 */
+	@ExceptionHandler(InvalidFeedbackFoundException.class)
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	public ResponseEntity<Object> resourceNotFoundException(InvalidFeedbackFoundException ex, WebRequest request) {
+		ExceptionDetails exceptionDetails = new ExceptionDetails(new Date(0), ex.getMessage(),
+				request.getDescription(false));
+		return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
+	}
+	
 
 }

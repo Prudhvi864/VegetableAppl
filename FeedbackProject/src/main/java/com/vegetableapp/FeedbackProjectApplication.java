@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages="com.vegetableapp")
+@ComponentScan(basePackages="com.vegetableapp")    //To locate and register all the  components 
 public class FeedbackProjectApplication {
 
 	public static void main(String[] args) {
