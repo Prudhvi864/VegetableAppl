@@ -70,7 +70,7 @@ public class FeedbackController {
 		return new ResponseEntity<List<Feedback>>(feedlist2, HttpStatus.OK);
 	}
 	
-	  // Using GET Mapping fetching results from vegetable id
+	  // Using GET Mapping fetching results from rating
 	
 	@GetMapping("/ratefeed/{rating}")       
 	public ResponseEntity<List<Feedback>> viewRating(@PathVariable("rating") int rating)

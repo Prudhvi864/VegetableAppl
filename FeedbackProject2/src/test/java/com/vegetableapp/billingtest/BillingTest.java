@@ -32,5 +32,4 @@ public class BillingTest {
 			Bills.createBilling(bill);
 		});
 	}
-
 }
