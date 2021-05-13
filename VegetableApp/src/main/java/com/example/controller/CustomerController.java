@@ -31,6 +31,17 @@ public class CustomerController {
 	ICustomerService customerService;
 
 	
+	 /**
+	 * This method is used to add customer to the database.
+	 * 
+	 * @param customer This is the argument to addCustomer method
+	 * @exception handle DuplicateCustomerFoundException On input customerId already exist.
+	 * @return customer
+	 * output when customer gets successfully added into database.
+	 * 
+	 * url= http://localhost:8089/Rest/Customer
+	 */
+	
 	/******************************* Add customer  ******************************/
 	
 	@PostMapping(consumes = "application/json", produces = "application/json")
@@ -46,6 +57,21 @@ public class CustomerController {
 	}
 
 	
+	
+	
+	
+	
+	
+	/**
+	 * This method is used to remove customer from the database.
+	 * 
+	 * @param customerId This is the argument to removeCustomerById method
+	 * @exception handle CustomerNotFoundException On input customerId is not found.
+	 * @return customer.
+	 * 
+	 * url = http://localhost:8089/Rest/Customer/{customerId}
+	 */	
+	
 	/******************************* Remove customer *********************************/
 	
 	@DeleteMapping(path = "/{customerId}")
@@ -58,10 +84,22 @@ public class CustomerController {
 			response = new ResponseEntity<Customer>(result, HttpStatus.OK);
 			return response;
 		} catch (Exception e) {
-			throw new CustomerNotFoundException("Customer Not Found");
+			throw new CustomerNotFoundException("Customer with id " + id + " not found.");
 		}
 	}
 
+	
+	
+	
+	/**
+	 * This method is used to get all customers from the database.
+	 * 
+	 * @param nothing
+	 * @exception handle CustomerNotFoundException if list of customer is empty.
+	 * @return list of customers.
+	 * 
+	 * url=http://localhost:8089/Rest/Customer
+	 */
 	
     /************************* Getting list of all the customers **********************/
 	
@@ -69,11 +107,23 @@ public class CustomerController {
 	public List<Customer> getAllCustomer() {
 		List<Customer> result = customerService.getAllCustomers();
 		if (result.isEmpty()) {
-			throw new CustomerNotFoundException("No customer is present in the list");
+			throw new CustomerNotFoundException("You dont have any records in database.");
 		}
 		return result;
 	}
 
+	
+	
+	
+	/**
+	 * This method is used to get customer from the database.
+	 * 
+	 * @param customerId This is the argument to findCustomerById method.
+	 * @exception handle CustomerNotFoundException On customer, customerId  is not present in the database.
+	 * @return payment.
+	 * 
+	 * url = http://localhost:8089/Rest/Customer/{customerId}
+	 */
 	
 	/************************** Finding customer by id ********************************/
 	
@@ -83,10 +133,21 @@ public class CustomerController {
 			Customer customer = customerService.findCustomerById(id);
 			return customer;
 		} catch (Exception e) {
-			throw new CustomerNotFoundException("Customer Not Found");
+			throw new CustomerNotFoundException("Customer with id " + id + " not found.");
 		}
 
 	}
+	
+	/**
+	 * This method is used to update payment to the database.
+	 * 
+	 * @param customerId This is first the argument to  updatePayment method.
+	 * @param customer This is second the argument to addCustomer method
+	 * @exception handle CustomerNotFoundException On customer id is not present in the database.
+	 * @return customer.
+	 * 
+	 * url = http://localhost:8089/Rest/Customer/{customerId}
+	 */
 	
 	
 	/**************************** Update customer *************************************/
@@ -97,7 +158,7 @@ public class CustomerController {
         Optional<Customer> cust = customerService.findCustomerById1(customerId);
 
         if (!cust.isPresent()) {
-            throw new CustomerNotFoundException("No customer is present with id " + customerId + " to Update");
+            throw new CustomerNotFoundException("Customer with id " + customerId + " not found.");
         } else {
         	customerService.updateCustomer(customer);
         }

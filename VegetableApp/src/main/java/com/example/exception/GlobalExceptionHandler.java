@@ -18,18 +18,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> resourceNotFoundException(CustomerNotFoundException ex, WebRequest request) {
 		 ExceptionResponse response = new ExceptionResponse();
 	        response.setDateTime(LocalDateTime.now());
-	        response.setMessage("Customer not found");
+	        response.setMessage(ex.getMessage());
 	        ResponseEntity<Object> entity = new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
 	        return entity;
 	}
 
 	@ExceptionHandler(DuplicateCustomerFoundException.class)
-	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	@ResponseStatus(value = HttpStatus.CONFLICT)
 	public ResponseEntity<Object> resourceNotFoundException(DuplicateCustomerFoundException ex, WebRequest request) {
 		 ExceptionResponse response = new ExceptionResponse();
 	        response.setDateTime(LocalDateTime.now());
-	        response.setMessage("Duplicate customer is not allowed");
-	        ResponseEntity<Object> entity = new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+	        response.setMessage(ex.getMessage());
+	        ResponseEntity<Object> entity = new ResponseEntity<>(response,HttpStatus.CONFLICT);
 	        return entity;
 	}
 }

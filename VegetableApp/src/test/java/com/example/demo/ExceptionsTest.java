@@ -17,13 +17,21 @@ class ExceptionsTest {
 	@Autowired
 	private ICustomerService service;
 
+	
+	/*
+	 * 
+	 * While testing we have to uncomment the methods which throws exception
+	 * This test case is created to see if DuplicatCustomerFoundException are getting thrown or not
+	 * 
+	 */
+	
 	@Test
-	void testAddCustomershouldThrowDuplicateCustomerFoundExceptino() throws DuplicateCustomerFoundException {
+	void testAddCustomershouldThrowDuplicateCustomerFoundException() throws DuplicateCustomerFoundException {
 
 		assertThrows(DuplicateCustomerFoundException.class, () -> {
 
 			Address address = new Address();
-			address.setAddressId(3);
+			address.setAddressId(2);
 			address.setFlatNo("9");
 			address.setBuildingName("abc");
 			address.setArea("nerul");
@@ -32,7 +40,7 @@ class ExceptionsTest {
 			address.setPincode("400706");
 
 			Customer customer = new Customer();
-			customer.setCustomerId(3);
+			customer.setCustomerId(2);
 			customer.setName("name");
 			customer.setAddress(address);
 			customer.setMobileNumber("7890");
@@ -42,6 +50,13 @@ class ExceptionsTest {
 		});
 	}
 
+	/*
+	 * 
+	 * While testing we have to uncomment the methods which throws exception
+	 * This test case is created to see if CustomerNotFoundException are getting thrown or not
+	 * 
+	 */
+	
 	@Test
 	void testForRemoveCustomerByIdshouldThrowCustomerNotFoundException() throws CustomerNotFoundException {
 

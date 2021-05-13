@@ -3,7 +3,6 @@ package com.example.demo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -41,7 +40,7 @@ public class CustomerControllerTest {
 	public void addCustomerTest() {
 
 		Address address = new Address();
-		address.setAddressId(1);
+		address.setAddressId(2);
 		address.setFlatNo("9");
 		address.setBuildingName("abc");
 		address.setArea("nerul");
@@ -58,8 +57,6 @@ public class CustomerControllerTest {
 		customer.setPassword(null);
 
 		service.addCustomer(customer);
-		
-//		Customer customer1 = new Customer();
 
 		verify(customerRepository, times(1)).save(customer);
 
@@ -88,7 +85,6 @@ public class CustomerControllerTest {
 		customer.setEmailId("d@gmail");
 		customer.setPassword(null);
 
-		given(customerRepository.findById(customer.getCustomerId())).willReturn(Optional.of(customer));
 		Optional<Customer> customer1 = service.removeCustomerById(2);
 		Assertions.assertThat(customer1).isNotNull();
 		verify(customerRepository, times(1)).deleteById(customer.getCustomerId());
@@ -116,7 +112,7 @@ public class CustomerControllerTest {
 		customer.setEmailId("d@gmail");
 		customer.setPassword(null);
 
-		given(customerRepository.findById(customer.getCustomerId())).willReturn(Optional.of(customer));
+
 		final Customer expected = service.findCustomerById(customer.getCustomerId());
 		Assertions.assertThat(expected).isNotNull();
 	}

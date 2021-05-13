@@ -10,9 +10,9 @@ import com.example.exception.DuplicateCustomerFoundException;
 
 public interface ICustomerService {
 	
-//	public Customer addCustomer(Customer customer);
-//	
-//	public Optional<Customer> removeCustomerById(int customerId);
+	public Customer addCustomer(Customer customer);
+	
+	public Optional<Customer> removeCustomerById(int customerId);
 	
     public Customer findCustomerById(int customerId);
     
@@ -23,8 +23,8 @@ public interface ICustomerService {
     public Customer updateCustomer(Customer customer);
 
 	/***************  Use it only for testing **************/
-	public Customer addCustomer(Customer customer) throws DuplicateCustomerFoundException;
-
-	public Optional<Customer> removeCustomerById(int customerId) throws CustomerNotFoundException;
+//	public Customer addCustomer(Customer customer) throws DuplicateCustomerFoundException;
+//
+//	public Optional<Customer> removeCustomerById(int customerId) throws CustomerNotFoundException;
 
 }
